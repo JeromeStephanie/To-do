@@ -1,0 +1,31 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-do List</title>
+    <link rel="stylesheet" href="public/output.css">
+</head>
+<body class="gradient-custom text-gray-500 text-base font-semibold">
+    <main class="border border-white rounded-xl bg-white mt-20 shadow shadow-black">
+        <div class="m-20">
+            <div class="mb-10 text-center text-cyan-500 text-3xl"><h1>My To-do List</h1></div>
+            <div class="input-container">
+                <input type="text" id="taskInput" class="input-box border rounded-lg border-slate-400 w-4/5 p-3">
+                <label for="taskInput" class="input-label">New task...</label>
+                <button type="button" onclick="addTask()" class="pl-5 pr-5 p-3 ml-1 border-transparent rounded-lg text-white bg-cyan-500 shadow shadow-cyan-500">ADD</button>
+            </div>
+            <div class="mt-10 focus:border ">
+                <a onclick="show('all')" class="mb-20 hover:bg-gray-100 hover:border border-spacing-3 border-b-cyan-500 p-5">ALL</a>
+                <a onclick="show('active')" class="hover:bg-gray-100 p-5 mb-20">ACTIVE</a>
+                <a onclick="show('completed')" class="hover:bg-gray-100 p-5 mb-20">COMPLETED</a>
+            </div>
+            <div>
+                <ul id="todoList" class="list-none text-lg space-y-4 ">
+                    <!--To-do items will be added here -->
+                </ul>
+            </div>
+        </div>
+    </main>
+    <script src="JavaScript/to-do.js"></script>
+</body>
+</html>

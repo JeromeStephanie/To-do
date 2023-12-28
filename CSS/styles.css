@@ -1,0 +1,80 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+li {
+    margin-top: 25px;
+    border: hidden;
+    background-color: #f3f4f6;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+
+li.hidden {
+    text-decoration: line-through; /* Apply a line-through style to completed tasks */
+    color: #999; /* Change the color for completed tasks */
+}
+
+main {
+    width: 60%;
+}
+
+label {
+    display: flex; /* Use flexbox for layout */
+    align-items: center; /* Align items vertically */
+    gap: 10px; /* Add space between the checkbox and text */
+}
+
+.deleteButton {
+    float: right;
+    top: 10px;
+    right: -30px;
+}
+
+input[type="checkbox"] {
+    width: 20px; /* Adjust the width to make the checkbox bigger */
+    height: 20px; /* Adjust the height to make the checkbox bigger */
+}
+
+.input-container {
+    position: relative;
+}
+
+.input-box {
+    box-sizing: border-box;
+}
+
+.input-label {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    pointer-events: none;
+    transition: top 0.3s ease, font-size 0.3s ease, color 0.3s ease;
+    font-size: 14px;
+    color: #999;
+}
+
+.input-box:focus + .input-label {
+    top: -7px;
+    font-size: 12px;
+    color: black;
+}
+
+
+.gradient-custom {
+    background: radial-gradient(50% 123.47% at 50% 50%, #00ff94 0%, #720059 100%),
+    linear-gradient(121.28deg, #669600 0%, #ff0000 100%),
+    linear-gradient(360deg, #0029ff 0%, #8fff00 100%),
+    radial-gradient(100% 164.72% at 100% 100%, #6100ff 0%, #00ff57 100%),
+    radial-gradient(100% 148.07% at 0% 0%, #fff500 0%, #51d500 100%);
+    background-blend-mode: screen, color-dodge, overlay, difference, normal;
+}
