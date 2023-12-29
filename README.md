@@ -20,7 +20,7 @@ To get started with My Awesome To-Do List, follow these simple steps:
 
 1. Clone the repository:
    ```bash
-   git clone <repository_url>
+   git clone <https://github.com/JeromeStephanie/To-do.git>
    cd To-do_list
 
 
