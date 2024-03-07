@@ -1,90 +1,101 @@
-const todoList = document.getElementById('todoList');
-const taskInput = document.getElementById('taskInput');
-const todos = JSON.parse(localStorage.getItem('todos')) || [];
+// Retrieve stored to-do items from local storage
+let todoItems = JSON.parse(localStorage.getItem('todoItems')) || []
 
-function show(filter) {
-    const filteredTodos = filter === 'all'
-        ? todos
-        : todos.filter(function(todo) {
-            if (filter === 'active') {
-                return !todo.completed;
-            } else {
-                return todo.completed;
-            }
-        });
-
-    renderTodos(filteredTodos);
+function updateLocalStorage () {
+  localStorage.setItem('todoItems', JSON.stringify(todoItems))
 }
 
-function renderTodos(todosToRender) {
-    // Hide all list items initially
-    const listItems = todoList.querySelectorAll('li');
-    listItems.forEach(li => li.style.display = 'none');
+function show (view) {
+  const todoList = document.getElementById('todoList')
+  todoList.innerHTML = '' // Clear the existing list
 
-    for (let i = 0; i < todosToRender.length; i++) {
-        const todo = todosToRender[i];
-        const li = document.createElement('li');
-        const checkbox = document.createElement('input');
-        checkbox.type = 'checkbox';
-        checkbox.checked = todo.completed;
-        checkbox.addEventListener('change', function() {
-            todo.completed = checkbox.checked;
-            saveTodos();
-            show('all');
-        });
-        const label = document.createElement('label');
-        label.appendChild(checkbox);
-        label.appendChild(document.createTextNode(todo.text));
-        li.appendChild(label);
+  switch (view) {
+    case 'all':
+      todoItems.forEach(item => createTodoItem(item))
+      break
+    case 'active':
+      todoItems
+        .filter(item => !item.checked)
+        .forEach(item => createTodoItem(item))
+      break
+    case 'completed':
+      todoItems
+        .filter(item => item.checked)
+        .forEach(item => createTodoItem(item))
+      break
+    default:
+      break
+  }
+}
 
-        // Add a delete button (x) to the right side
-        const deleteButton = document.createElement('button');
-        deleteButton.className = 'delete';
-        deleteButton.innerHTML = 'x';
-        deleteButton.addEventListener('click', function() {
-            deleteTask(todo);
-            show('all');
-        });
+function createTodoItem (item) {
+  const li = document.createElement('li')
+  li.textContent = item.text
+  if (item.checked) {
+    li.classList.add('checked')
+  }
 
-        li.appendChild(deleteButton);
-        
+  const span = document.createElement('SPAN')
+  const txt = document.createTextNode('\u00D7')
+  span.className = 'close'
+  span.appendChild(txt)
+  li.appendChild(span)
 
-        todoList.appendChild(li);
-        li.style.display = 'block'; // Display the filtered items
-        if (todo.completed) {
-            li.classList.add('hidden'); // Apply 'hidden' class to completed tasks
-        }
+  document.getElementById('todoList').appendChild(li)
+
+  // Click on a close button to remove the item
+  span.onclick = function () {
+    const index = todoItems.findIndex(i => i.text === item.text)
+    if (index !== -1) {
+      todoItems.splice(index, 1)
+      updateLocalStorage()
+      show('all') // Refresh the list after removing an item
     }
+  }
+
+  // Add a "checked" symbol when clicking on a list item
+  li.onclick = function () {
+    item.checked = !item.checked
+    updateLocalStorage()
+    show('all') // Refresh the list after updating the item's status
+  }
 }
 
-function addTask() {
-    const taskText = taskInput.value.trim();
-    if (taskText !== '') {
-        todos.push({ text: taskText, completed: false });
-        taskInput.value = '';
-        show('all'); // Refresh the list after adding a new task
+// Initialize the list based on the stored data
+document.addEventListener('DOMContentLoaded', function () {
+  show('all')
+
+  const taskInput = document.getElementById('taskInput')
+  taskInput.addEventListener('keypress', function (event) {
+    if (event.key === 'Enter') {
+      newElement()
     }
+  })
+})
+
+function newElement () {
+  const inputValue = document.getElementById('taskInput').value
+  if (inputValue === '') {
+    showErrorModal('You must write something!')
+  } else {
+    const newItem = { text: inputValue, checked: false }
+    todoItems.push(newItem)
+    updateLocalStorage()
+    show('all') // Refresh the list after adding a new item
+  }
+  document.getElementById('taskInput').value = ''
 }
 
-function clearCompleted() {
-    for (let i = todos.length - 1; i >= 0; i--) {
-        if (todos[i].completed) {
-            todos.splice(i, 1);
-        }
-    }
-    show('all'); // Refresh the list after clearing completed tasks
+function showErrorModal (message) {
+  const errorMessageModal = document.getElementById('errorMessageModal')
+  errorMessageModal.textContent = message
+
+  const errorModal = document.getElementById('errorModal')
+  errorModal.style.display = 'block'
 }
 
-function deleteTask(task) {
-    const taskIndex = todos.indexOf(task);
-    if (taskIndex !== -1) {
-        todos.splice(taskIndex, 1);
-        saveTodos();
-    }
+function closeErrorModal () {
+  const errorModal = document.getElementById('errorModal')
+  errorModal.style.display = 'none'
 }
 
-function saveTodos() {
-    localStorage.setItem('todos', JSON.stringify(todos));
-}
-
-show('all');

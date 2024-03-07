@@ -1,31 +1,64 @@
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>To-do List</title>
-    <link rel="stylesheet" href="public/output.css">
-</head>
-<body class="gradient-custom text-gray-500 text-base font-semibold">
-    <main class="border border-white rounded-xl bg-white mt-20 shadow shadow-black">
-        <div class="m-20">
-            <div class="mb-10 text-center text-cyan-500 text-3xl"><h1>My To-do List</h1></div>
-            <div class="input-container">
-                <input type="text" id="taskInput" class="input-box border rounded-lg border-slate-400 w-4/5 p-3">
-                <label for="taskInput" class="input-label">New task...</label>
-                <button type="button" onclick="addTask()" class="pl-5 pr-5 p-3 ml-1 border-transparent rounded-lg text-white bg-cyan-500 shadow shadow-cyan-500">ADD</button>
-            </div>
-            <div class="mt-10 focus:border ">
-                <a onclick="show('all')" class="mb-20 hover:bg-gray-100 hover:border border-spacing-3 border-b-cyan-500 p-5">ALL</a>
-                <a onclick="show('active')" class="hover:bg-gray-100 p-5 mb-20">ACTIVE</a>
-                <a onclick="show('completed')" class="hover:bg-gray-100 p-5 mb-20">COMPLETED</a>
-            </div>
-            <div>
-                <ul id="todoList" class="list-none text-lg space-y-4 ">
-                    <!--To-do items will be added here -->
-                </ul>
-            </div>
+    <link rel="stylesheet" href="public/output.css" />
+  </head>
+  <body class="gradient-custom w-full h-screen text-gray-500 text-base font-semibold">
+    <main
+      class="border border-white rounded-xl bg-white shadow shadow-black"
+    >
+      <div class="class m-20">
+        <div class="mb-10 text-center text-cyan-500 text-3xl">
+          <h1>My To-do List</h1>
         </div>
+        <div class="input-container flex w-full items-center">
+          <div class="input-group">
+            <input
+              type="text"
+              id="taskInput"
+              class="border p-3 outline-none bg-white rounded-lg border-slate-400 w-full"
+            />
+            <label for="taskInput" class="text-gray-500 input-label">New task...</label>
+          </div>
+
+          <div class="button">
+            <button
+            type="button"
+            onclick="newElement()"
+            class="addBtn p-3 border-transparent rounded-lg text-white bg-cyan-500 shadow shadow-cyan-500"
+          >
+            ADD
+          </button>
+          </div>
+          
+        </div>
+        <div class="mt-10 mb-[15px] link flex focus:border">
+          <a onclick="show('all')" class=" hover:bg-gray-100 p-5">ALL</a>
+          <a onclick="show('active')" class="hover:bg-gray-100 p-5"
+            >ACTIVE</a
+          >
+          <a onclick="show('completed')" class="hover:bg-gray-100 p-5"
+            >COMPLETED</a
+          >
+        </div>
+        <div>
+          <ul id="todoList">
+            <li>Set a Goal for Today</li>
+            <li class="checked">Review and Organize Inbox</li>
+            <!--To-do items will be added here -->
+          </ul>
+        </div>
+      </div>
     </main>
+    <!-- Error Modal -->
+    <div id="errorModal" class="modal">
+      <div class="modal-content">
+        <span class="close1" onclick="closeErrorModal()">&times;</span>
+        <p id="errorMessageModal" class="text-red-500"></p>
+      </div>
+    </div>
     <script src="JavaScript/to-do.js"></script>
-</body>
+  </body>
 </html>
