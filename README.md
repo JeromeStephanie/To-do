@@ -4,7 +4,7 @@ A simple and efficient to-do list application to help you organize your tasks an
 
 ## Overview
 
-My To-Do List is a lightweight and user-friendly application designed to streamline your task management process. Whether you're a student, professional, or just someone looking to stay organized, this to-do list has got you covered.
+My To-Do List is a lightweight and user-friendly website designed to streamline your task management process. Whether you're a student, professional, or just someone looking to stay organized, this to-do list has got you covered.
 
 ## Features
 
@@ -30,7 +30,7 @@ If you have any questions, suggestions, or just want to say hi, feel free to rea
 ### Usage
 ```markdown
 
-1. Add a new task by clicking the 'ADD' button.
+1. Add a new task by clicking the 'ADD' button or your Enter Key.
 2. My To-Do List comes with three navigation options to help you manage your tasks efficiently:
 
 - **All:** View all tasks, whether they are pending or completed. This option provides a comprehensive overview of your to-do list.
