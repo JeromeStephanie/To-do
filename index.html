@@ -5,13 +5,13 @@
     <title>To-do List</title>
     <link rel="stylesheet" href="public/output.css" />
   </head>
-  <body class="gradient-custom w-full h-screen text-gray-500 text-base font-semibold">
+  <body class="gradient-custom w-full h-auto text-gray-500 text-base font-semibold">
     <main
       class="border border-white rounded-xl bg-white shadow shadow-black"
     >
       <div class="class m-20">
         <div class="mb-10 text-center text-cyan-500 text-3xl">
-          <h1>My To-do List</h1>
+          <h1 class="h1">My To-do List</h1>
         </div>
         <div class="input-container flex w-full items-center">
           <div class="input-group">
@@ -35,15 +35,15 @@
           
         </div>
         <div class="mt-10 mb-[15px] link flex focus:border">
-          <a onclick="show('all')" class=" hover:bg-gray-100 p-5">ALL</a>
-          <a onclick="show('active')" class="hover:bg-gray-100 p-5"
+          <a onclick="show('all')" class=" hover:bg-gray-100 duration-300 cursor-pointer p-5">ALL</a>
+          <a onclick="show('active')" class="hover:bg-gray-100 duration-300 p-5 cursor-pointer"
             >ACTIVE</a
           >
-          <a onclick="show('completed')" class="hover:bg-gray-100 p-5"
+          <a onclick="show('completed')" class="hover:bg-gray-100 p-5 duration-300 cursor-pointer"
             >COMPLETED</a
           >
         </div>
-        <div>
+        <div class="todo-div">
           <ul id="todoList">
             <li>Set a Goal for Today</li>
             <li class="checked">Review and Organize Inbox</li>
